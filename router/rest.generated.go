@@ -2,7 +2,7 @@
 package router
 
 import (
-	"github.com/Alexandr-Fox/fox-core/controllers"
+	"github.com/Alexandr-Fox/fox-core/internal/controllers"
 	"github.com/gofiber/fiber/v2"
 )
 

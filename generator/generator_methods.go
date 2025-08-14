@@ -121,7 +121,7 @@ func toInitials(s string) string {
 }
 
 func main() {
-	modelsDir := "models"
+	modelsDir := "internal/models"
 
 	// Получаем список файлов .go в папке models
 	files, err := os.ReadDir(modelsDir)
@@ -232,7 +232,7 @@ func generateMethods(modelName string, methods []string, outputDir string) {
 	defer file.Close()
 
 	fullTmpl := header
-	imports := map[string]bool{"github.com/Alexandr-Fox/fox-core/database": true, "github.com/Alexandr-Fox/fox-core/consts": true}
+	imports := map[string]bool{"github.com/Alexandr-Fox/fox-core/internal/database": true, "github.com/Alexandr-Fox/fox-core/internal/consts": true}
 
 	for _, method := range methods {
 		switch method {

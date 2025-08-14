@@ -20,7 +20,7 @@ package models
 
 import (
     "fmt"
-    "github.com/Alexandr-Fox/fox-core/database"
+    "github.com/Alexandr-Fox/fox-core/internal/database"
 )
 
 // Migrate запускает AutoMigrate для всех моделей
@@ -41,7 +41,7 @@ type MigrateData struct {
 }
 
 func main() {
-	modelsDir := "models"
+	modelsDir := "internal/models"
 	outputFile := filepath.Join(modelsDir, "migrate.go")
 
 	fset := token.NewFileSet()

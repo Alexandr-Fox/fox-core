@@ -1,9 +1,8 @@
 package boot
 
 import (
-	"errors"
 	"fmt"
-	"github.com/Alexandr-Fox/fox-core/models"
+	"github.com/Alexandr-Fox/fox-core/internal/models"
 	"os"
 	"reflect"
 	"strings"
@@ -137,17 +136,7 @@ func LoadConfig(filename string) (Config, error) {
 		}
 	}
 	if port, ok := raw["app"].(map[string]interface{})["port"]; ok {
-		switch v := port.(type) {
-		case int:
-		case int64:
-		case float64:
-			{
-				cfg.App.Port = uint(v)
-				break
-			}
-		default:
-			return cfg, errors.New("port error")
-		}
+		cfg.App.Port = uint(port.(int))
 	}
 
 	prepareCfg := FlattenConfig(cfg)

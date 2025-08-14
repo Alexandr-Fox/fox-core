@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"github.com/Alexandr-Fox/fox-core/consts/config"
-	"github.com/Alexandr-Fox/fox-core/docs"
-	"github.com/Alexandr-Fox/fox-core/models"
+	config2 "github.com/Alexandr-Fox/fox-core/internal/consts/config"
+	docs2 "github.com/Alexandr-Fox/fox-core/internal/docs"
+	"github.com/Alexandr-Fox/fox-core/internal/models"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -17,8 +17,8 @@ func (app *App) Ping(ctx *fiber.Ctx) error {
 }
 
 func NewApp() *App {
-	name, _ := models.GetConfig(config.FieldName, config.ValueName)
-	version, _ := models.GetConfig(config.FieldName, config.ValueVersion)
+	name, _ := models.GetConfig(config2.FieldName, config2.ValueName)
+	version, _ := models.GetConfig(config2.FieldName, config2.ValueVersion)
 
 	return &App{
 		Name:    name.Value,
@@ -44,23 +44,23 @@ func (app *App) ApiVersions(ctx *fiber.Ctx) error {
 // входных/выходных параметров метода, можно пропустить обработку "version".
 func (app *App) Docs(ctx *fiber.Ctx) error {
 	method := ctx.Query("method", app.Version)
-	fields := map[string]docs.ControllerDoc{
+	fields := map[string]docs2.ControllerDoc{
 		"ping": {
-			Results: &docs.Result{
-				Type: docs.Object,
-				Options: &docs.ResultOptions{
-					Items: &[]docs.Result{
-						{Name: "name", Type: docs.String},
-						{Name: "version", Type: docs.String},
+			Results: &docs2.Result{
+				Type: docs2.Object,
+				Options: &docs2.ResultOptions{
+					Items: &[]docs2.Result{
+						{Name: "name", Type: docs2.String},
+						{Name: "version", Type: docs2.String},
 					},
 				},
 			},
 		},
 		"apiVersions": {
-			Results: &docs.Result{
-				Type: docs.Array,
-				Options: &docs.ResultOptions{
-					Item: &docs.Result{Type: docs.String},
+			Results: &docs2.Result{
+				Type: docs2.Array,
+				Options: &docs2.ResultOptions{
+					Item: &docs2.Result{Type: docs2.String},
 				},
 			},
 		},

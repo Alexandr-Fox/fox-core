@@ -34,7 +34,7 @@ func toLowerCamel(s string) string {
 
 func main() {
 	fset := token.NewFileSet()
-	controllersPath := "controllers"
+	controllersPath := "internal/controllers"
 
 	pkgs, err := parser.ParseDir(fset, controllersPath, nil, parser.ParseComments)
 	if err != nil {
@@ -165,8 +165,8 @@ package router
 
 import (
     "github.com/gofiber/fiber/v2"
-	{{if gt (len .Controllers) 0}}"github.com/Alexandr-Fox/fox-core/controllers"{{end}}
-	{{if .Auth}}"github.com/Alexandr-Fox/fox-core/middleware"{{end}}
+	{{if gt (len .Controllers) 0}}"github.com/Alexandr-Fox/fox-core/internal/controllers"{{end}}
+	{{if .Auth}}"github.com/Alexandr-Fox/fox-core/internal/middleware"{{end}}
 )
 
 // RegisterRESTRoutes регистрирует REST-роуты для всех моделей

@@ -3,7 +3,7 @@ package database
 import (
 	"errors"
 	"fmt"
-	"github.com/Alexandr-Fox/fox-core/consts"
+	consts2 "github.com/Alexandr-Fox/fox-core/internal/consts"
 	"gorm.io/gorm"
 	"strings"
 	"time"
@@ -26,7 +26,7 @@ func (e *Entity) Create() error {
 }
 
 func (e *Entity) Delete() error {
-	return GetCoreDB().Delete(&e, fmt.Sprintf(consts.QueryEqOne, consts.FieldID), e.ID).Error
+	return GetCoreDB().Delete(&e, fmt.Sprintf(consts2.QueryEqOne, consts2.FieldID), e.ID).Error
 }
 
 func (e *Entity) Save() error {
@@ -34,14 +34,14 @@ func (e *Entity) Save() error {
 }
 
 func (e *Entity) First(name string, value interface{}) error {
-	if err := GetCoreDB().Where(fmt.Sprintf(consts.QueryEqOne, name), value).First(&e).Error; err != nil {
+	if err := GetCoreDB().Where(fmt.Sprintf(consts2.QueryEqOne, name), value).First(&e).Error; err != nil {
 		return err
 	}
 
 	return nil
 }
 func (e *Entity) Find(name string, value interface{}) (entities []Entity, err error) {
-	if err = GetCoreDB().Where(fmt.Sprintf(consts.QueryEqOne, name), value).Find(&entities).Error; err != nil {
+	if err = GetCoreDB().Where(fmt.Sprintf(consts2.QueryEqOne, name), value).Find(&entities).Error; err != nil {
 		return nil, err
 	}
 
@@ -50,7 +50,7 @@ func (e *Entity) Find(name string, value interface{}) (entities []Entity, err er
 
 func (e *Entity) Load(query ...LoadQuery) (entities []Entity, err error) {
 	if len(query) > 1 {
-		return []Entity{}, errors.New(consts.ErrorArgumentsCount)
+		return []Entity{}, errors.New(consts2.ErrorArgumentsCount)
 	}
 
 	qb := GetCoreDB().Model(&e)
@@ -131,5 +131,5 @@ func ParseQuery(data interface{}) (string, []interface{}) {
 		return fmt.Sprintf("(%s)", strings.Join(wheres[:], fmt.Sprintf(" %s ", op))), values
 	}
 
-	return consts.DefaultEmpty, []interface{}{}
+	return consts2.DefaultEmpty, []interface{}{}
 }

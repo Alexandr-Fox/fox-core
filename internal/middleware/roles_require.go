@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"github.com/Alexandr-Fox/fox-core/consts"
-	"github.com/Alexandr-Fox/fox-core/database"
+	"github.com/Alexandr-Fox/fox-core/internal/consts"
+	"github.com/Alexandr-Fox/fox-core/internal/database"
 	"github.com/gofiber/fiber/v2"
 )
 

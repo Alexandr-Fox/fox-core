@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/Alexandr-Fox/fox-core/database"
+	"github.com/Alexandr-Fox/fox-core/internal/database"
 )
 
 type Config struct {

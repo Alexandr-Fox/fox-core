@@ -129,7 +129,6 @@ func (d DB) ToDSN() string {
 }
 
 func GetCoreDB() *gorm.DB {
-	println(ReadDatabaseConfig().ToDSN())
 	db, err := gorm.Open(postgres.Open(ReadDatabaseConfig().ToDSN()), &gorm.Config{})
 
 	if err != nil {

@@ -26,7 +26,7 @@ func main() {
 
 	router.RegisterRESTRoutes(app)
 
-	err = app.Listen(fmt.Sprintf("%s:%d", config.App.Host, config.App.Port))
+	err = app.Listen(fmt.Sprintf("0.0.0.0:%d", config.App.Port))
 	if err != nil {
 		panic(err)
 	}

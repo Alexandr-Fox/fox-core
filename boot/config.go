@@ -18,7 +18,6 @@ type Config struct {
 type AppConfig struct {
 	Version string `yaml:"version"`
 	Name    string `yaml:"name"`
-	Host    string `yaml:"host"`
 	Port    uint   `yaml:"port"`
 }
 
@@ -27,7 +26,6 @@ func defaultConfig() Config {
 		App: AppConfig{
 			Version: "0.1",
 			Name:    "fox-core",
-			Host:    "0.0.0.0",
 			Port:    3000,
 		},
 	}
@@ -136,11 +134,6 @@ func LoadConfig(filename string) (Config, error) {
 	if name, ok := raw["app"].(map[string]interface{})["name"]; ok {
 		if v, valid := name.(string); valid {
 			cfg.App.Name = v
-		}
-	}
-	if host, ok := raw["app"].(map[string]interface{})["host"]; ok {
-		if v, valid := host.(string); valid {
-			cfg.App.Host = v
 		}
 	}
 	if port, ok := raw["app"].(map[string]interface{})["port"]; ok {

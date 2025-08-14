@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=fox
+      - POSTGRES_USER=fox
+      - POSTGRES_DB=fox
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8000:8080"
+
+volumes:
+  db_data:
+    driver: local

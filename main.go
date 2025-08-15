@@ -12,6 +12,7 @@ import (
 
 //go:generate go run generator/generator_methods.go
 //go:generate go run generator/generator_migrate.go
+//go:generate go run generator/generator_docs_route.go
 //go:generate go run generator/generator_routers_rest.go
 
 //TIP <p>To run your code, right-click the code and select <b>Run</b>.</p> <p>Alternatively, click

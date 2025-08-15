@@ -40,4 +40,12 @@ func RegisterRESTRoutes(app *fiber.App) {
 	api.Get("/app.docs", AppDocs)
 	api.Post("/app.docs", AppDocs)
 
+	AppMethods := func(c *fiber.Ctx) error {
+		model := controllers.NewApp()
+		if err := model.Methods(c); err != nil {
+			return err.(error)
+		}
+		return c.SendStatus(fiber.StatusOK)
+	}
+	api.Get("/app.methods", AppMethods)
 }
